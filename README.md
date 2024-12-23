@@ -18,4 +18,4 @@ Event Explorer is a cross-platform mobile app built using Flutter that allows us
 1. Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/nikhar-tale/event_explorer.git
+git clone https://github.com/nikhar-tale/EventExplorer.git
