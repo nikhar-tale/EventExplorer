@@ -93,13 +93,13 @@ class EventCard extends StatelessWidget {
                       decoration: decoration,
                       child: Container(
                         padding: const EdgeInsets.all(16.0),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
                               Colors.transparent,
-                              Colors.black.withOpacity(0.7),
+                              Colors.black,
                             ],
                           ),
                         ),
