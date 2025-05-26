@@ -1,0 +1,21 @@
+name: Hello Workflow
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Print Hello Message
+        run: echo "👋 Hello, Nikhar! Node.js is set up."
