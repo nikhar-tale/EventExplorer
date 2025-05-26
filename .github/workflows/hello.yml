@@ -1,21 +1,27 @@
-name: Hello Workflow
+name: Flutter CI
 
 on:
   push:
   pull_request:
 
 jobs:
-  greet:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          node-version: '18'
+          flutter-version: '3.18.0-18.0.pre.54'
 
-      - name: Print Hello Message
-        run: echo "👋 Hello, Nikhar! Node.js is set up."
+      - name: Run flutter doctor
+        run: flutter doctor
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run unit tests
+        run: flutter test
