@@ -4,6 +4,7 @@ import 'package:event_explorer/models/network_response.dart';
 import 'package:event_explorer/services/network_service.dart';
 import 'package:event_explorer/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -74,20 +75,20 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   }
 
   Future<Event> onSearchText(EventSearch event) async {
-    Event _localEvent = event.localEvent;
-    String _searchKeybord = event.searchKeybord;
+    Event localEvent = event.localEvent;
+    String searchKeybord = event.searchKeybord;
 
-    List<Item>? _searchResult = [];
-    _localEvent.item!.forEach((Item item) {
-      if (item.eventnameRaw!.contains(_searchKeybord) ||
-          item.location!.contains(_searchKeybord)) {
-        print("found");
-        _searchResult.add(item);
+    List<Item>? searchResult = [];
+    for (var item in localEvent.item!) {
+      if (item.eventnameRaw!.contains(searchKeybord) ||
+          item.location!.contains(searchKeybord)) {
+        debugPrint("found");
+        searchResult.add(item);
       }
-    });
+    }
 
-    _localEvent.item = _searchResult;
-    return _localEvent;
+    localEvent.item = searchResult;
+    return localEvent;
   }
 
   Future<dynamic> _signOut() async {
@@ -100,7 +101,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
 
       return;
     } catch (e) {
-      print('Error signing out: $e');
+      debugPrint('Error signing out: $e');
       rethrow;
     }
   }
@@ -108,8 +109,8 @@ class EventBloc extends Bloc<EventEvent, EventState> {
   Future<UserCredential?> _signInWithGoogle() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool? _isNewUser = prefs.getBool(Utils.isNewUser);
-      if (_isNewUser == true) {
+      bool? isNewUser = prefs.getBool(Utils.isNewUser);
+      if (isNewUser == true) {
         await _auth.signOut();
         await _googleSignIn.signOut();
       }
@@ -126,7 +127,7 @@ class EventBloc extends Bloc<EventEvent, EventState> {
       await prefs.setBool(Utils.isNewUser, false);
       return await _auth.signInWithCredential(credential);
     } catch (e) {
-      print('Error signing in with Google: $e');
+      debugPrint('Error signing in with Google: $e');
       rethrow;
     }
   }
@@ -149,15 +150,15 @@ class EventBloc extends Bloc<EventEvent, EventState> {
 
   fetchEventsByCategory(FetchEventsByCategory event) async {
     try {
-      String _url = event.category.data!;
-      ResponseModel response = await networkService.get(_url);
+      String url = event.category.data!;
+      ResponseModel response = await networkService.get(url);
 
       if (response.statusCode == 200) {
         return Event.fromJson(response.data);
       }
       throw (response.statusCode);
     } catch (e) {
-      print(e);
+      debugPrint(e as String?);
       rethrow;
     }
   }

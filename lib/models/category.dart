@@ -12,8 +12,8 @@ class Category {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['category'] = this.category;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['category'] = category;
     data['data'] = this.data;
     return data;
   }

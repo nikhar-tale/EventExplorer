@@ -86,6 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     );
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
           automaticallyImplyLeading: false,
           title: Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
           actions: [
             if (user != null)
@@ -211,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ShimmerLoading(
                     isLoading: isLoading,
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(30),

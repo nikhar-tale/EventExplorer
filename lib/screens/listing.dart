@@ -152,13 +152,13 @@ class _ListingScreenState extends State<ListingScreen>
           child: items.isEmpty
               ? Center(
                   child: isLoading
-                      ? CircularProgressIndicator()
-                      : Column(
+                      ? const CircularProgressIndicator()
+                      : const Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(Icons.event, size: 40, color: Colors.grey),
-                            const SizedBox(height: 8),
-                            const Text(
+                            SizedBox(height: 8),
+                            Text(
                               'No Events Found!',
                               style: TextStyle(fontSize: 16),
                             ),
@@ -194,7 +194,7 @@ class _ListingScreenState extends State<ListingScreen>
   }
 
   appbar({bool innerBoxIsScrolled = false}) {
-    IconData iconData = Utils.getCategoryIcon(widget.category!.category ?? '');
+    IconData iconData = Utils.getCategoryIcon(widget.category.category ?? '');
 
     return SliverAppBar(
       pinned: false,
@@ -322,6 +322,7 @@ class _ListingScreenState extends State<ListingScreen>
   }
 
   void onSearchTextChanged(String value) {
+    // ignore: unnecessary_null_comparison
     if (value == null || value.isEmpty) {
       isSearch.value = false;
       return;

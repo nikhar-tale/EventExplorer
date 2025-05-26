@@ -10,6 +10,7 @@ class EventCard extends StatelessWidget {
   final bool isLoading;
   final bool gridView;
 
+  // ignore: use_key_in_widget_constructors
   const EventCard({
     Key? key,
     required this.item,
@@ -86,7 +87,7 @@ class EventCard extends StatelessWidget {
                   isLoading: isLoading,
                   child: ClipRRect(
                     borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20.0)),
+                        const BorderRadius.vertical(top: Radius.circular(20.0)),
                     child: Container(
                       height: imageHeight,
                       decoration: decoration,

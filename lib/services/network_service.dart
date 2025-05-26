@@ -8,6 +8,7 @@ class NetworkService {
 
   Future<dynamic> get(String url) async {
     try {
+      // ignore: no_leading_underscores_for_local_identifiers
       String _url = url;
 
       final response = await http.get(

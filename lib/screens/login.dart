@@ -2,14 +2,13 @@ import 'package:event_explorer/bloc/event_bloc.dart';
 import 'package:event_explorer/bloc/event_event.dart';
 import 'package:event_explorer/bloc/event_state.dart';
 import 'package:event_explorer/utils/utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const LoginScreen({Key? key});
 
   @override
@@ -140,11 +139,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> autoLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    // ignore: no_leading_underscores_for_local_identifiers
     bool? _isNewUser = prefs.getBool(Utils.isNewUser);
 
     if (_isNewUser == false) {
       eventBloc.add(SignInWithGoogle());
     }
-    ;
   }
 }

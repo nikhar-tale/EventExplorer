@@ -143,10 +143,10 @@ class Item {
     thumbUrl = json['thumb_url'];
     thumbUrlLarge = json['thumb_url_large'];
     // Convert to int if the value is not null
-    startTime = json['start_time'] != null ? json['start_time'].toInt() : null;
+    startTime = json['start_time']?.toInt();
     startTimeDisplay = json['start_time_display'];
     // Convert to int if the value is not null
-    endTime = json['end_time'] != null ? json['end_time'].toInt() : null;
+    endTime = json['end_time']?.toInt();
     endTimeDisplay = json['end_time_display'];
     location = json['location'];
     venue = json['venue'] != null ? Venue.fromJson(json['venue']) : null;

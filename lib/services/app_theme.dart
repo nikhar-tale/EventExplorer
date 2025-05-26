@@ -15,15 +15,15 @@ final ThemeData appTheme = ThemeData(
     bodyMedium: TextStyle(color: Colors.black),
   ),
   // Define your app bar theme
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     color: Colors.deepPurple,
   ),
   // Define your button theme
-  buttonTheme: ButtonThemeData(
+  buttonTheme: const ButtonThemeData(
     buttonColor: Colors.deepPurple,
   ),
   // Define your icon theme
-  iconTheme: IconThemeData(
+  iconTheme: const IconThemeData(
     color: Colors.deepPurple,
   ),
 );
