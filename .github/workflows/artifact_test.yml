@@ -1,0 +1,16 @@
+name: Artifact Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create dummy file
+        run: echo "Hello artifact" > hello.txt
+
+      - name: Upload dummy artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-artifact
+          path: hello.txt

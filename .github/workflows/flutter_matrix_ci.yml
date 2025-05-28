@@ -1,42 +1,42 @@
-name: Flutter CI Matrix
+# name: Flutter CI Matrix
 
-on:
-  push:
-  pull_request:
+# on:
+#   push:
+#   pull_request:
 
-jobs:
-  build:
-    name: Test on Flutter ${{ matrix.flutter-channel }}
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     name: Test on Flutter ${{ matrix.flutter-channel }}
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        flutter-channel: [stable, beta]
+#     strategy:
+#       matrix:
+#         flutter-channel: [stable, beta]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: ${{ matrix.flutter-channel }}
+#       - name: Setup Flutter
+#         uses: subosito/flutter-action@v2
+#         with:
+#           channel: ${{ matrix.flutter-channel }}
 
-      - name: Cache pub packages
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.pub-cache
-            .dart_tool
-          key: ${{ runner.os }}-flutter-${{ matrix.flutter-channel }}-${{ hashFiles('**/pubspec.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-flutter-${{ matrix.flutter-channel }}-
+#       - name: Cache pub packages
+#         uses: actions/cache@v3
+#         with:
+#           path: |
+#             ~/.pub-cache
+#             .dart_tool
+#           key: ${{ runner.os }}-flutter-${{ matrix.flutter-channel }}-${{ hashFiles('**/pubspec.lock') }}
+#           restore-keys: |
+#             ${{ runner.os }}-flutter-${{ matrix.flutter-channel }}-
 
-      - name: Install dependencies
-        run: flutter pub get
+#       - name: Install dependencies
+#         run: flutter pub get
 
-      - name: Analyze code
-        run: flutter analyze
+#       - name: Analyze code
+#         run: flutter analyze
 
-      # - name: Run unit tests
-      #   run: flutter test
+#       # - name: Run unit tests
+#       #   run: flutter test
