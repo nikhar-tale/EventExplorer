@@ -72,12 +72,12 @@ jobs:
           build/app/outputs/bundle/release/app-release.aab
           build/app/outputs/flutter-apk/*.apk
 
-    # 🔟  (Optional) Distribute to Firebase testers
-    - if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
-      uses: wzieba/Firebase-Distribution-Github-Action@v1   # uploads to Firebase App Distribution :contentReference[oaicite:1]{index=1}
-      with:
-        appId: ${{ secrets.FIREBASE_APP_ID }}
-        serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        releaseNotesFile: CHANGELOG.md
-        groups: testers
-        file: build/app/outputs/bundle/release/app-release.aab
+    # # 🔟  (Optional) Distribute to Firebase testers
+    # - if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
+    #   uses: wzieba/Firebase-Distribution-Github-Action@v1   # uploads to Firebase App Distribution :contentReference[oaicite:1]{index=1}
+    #   with:
+    #     appId: ${{ secrets.FIREBASE_APP_ID }}
+    #     serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    #     releaseNotesFile: CHANGELOG.md
+    #     groups: testers
+    #     file: build/app/outputs/bundle/release/app-release.aab
