@@ -10,7 +10,7 @@ jobs:
         run: echo "Hello artifact" > hello.txt
 
       - name: Upload dummy artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-artifact
           path: hello.txt
