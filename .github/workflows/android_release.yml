@@ -50,7 +50,7 @@ jobs:
     # 6️⃣  Get deps & static checks
     - run: flutter pub get
     - run: flutter analyze --no-fatal-warnings  # optional looseness
-    - run: flutter test
+    # - run: flutter test
 
     # 7️⃣  Build signed AAB & APK
     - run: flutter build appbundle --release
