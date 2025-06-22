@@ -1,42 +1,26 @@
-# name: Flutter CI Matrix
+name: Flutter CI
 
-# on:
-#   push:
-#   pull_request:
+on: [push, pull_request]
 
-# jobs:
-#   build:
-#     name: Test on Flutter ${{ matrix.flutter-channel }}
-#     runs-on: ubuntu-latest
+jobs:
+  flutter:
+    name: Run Flutter Analyze & Test
+    runs-on: ubuntu-latest
 
-#     strategy:
-#       matrix:
-#         flutter-channel: [stable, beta]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v3
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'  # Use your preferred version
 
-#       - name: Setup Flutter
-#         uses: subosito/flutter-action@v2
-#         with:
-#           channel: ${{ matrix.flutter-channel }}
+      - name: Install dependencies
+        run: flutter pub get
 
-#       - name: Cache pub packages
-#         uses: actions/cache@v3
-#         with:
-#           path: |
-#             ~/.pub-cache
-#             .dart_tool
-#           key: ${{ runner.os }}-flutter-${{ matrix.flutter-channel }}-${{ hashFiles('**/pubspec.lock') }}
-#           restore-keys: |
-#             ${{ runner.os }}-flutter-${{ matrix.flutter-channel }}-
+      - name: Run analyzer
+        run: flutter analyze
 
-#       - name: Install dependencies
-#         run: flutter pub get
-
-#       - name: Analyze code
-#         run: flutter analyze
-
-#       # - name: Run unit tests
-#       #   run: flutter test
+      - name: Run tests
+        run: flutter test

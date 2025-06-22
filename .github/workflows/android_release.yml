@@ -3,7 +3,6 @@ name: Android Release
 on:
   push:
     branches: [ main ]          # daily builds
-  create:
     tags:                       # e.g. v1.2.3   → triggers real release
       - v*
 

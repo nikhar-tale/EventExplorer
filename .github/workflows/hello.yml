@@ -1,0 +1,13 @@
+name: First CI Workflow
+
+on: [push]
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Print Hello
+        run: echo "Hello Nikhar! CI/CD started 🚀"
